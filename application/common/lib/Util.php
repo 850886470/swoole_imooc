@@ -35,6 +35,5 @@ class Util
 
         echo json_encode($result);
 
-        return NULL;
     }
 }

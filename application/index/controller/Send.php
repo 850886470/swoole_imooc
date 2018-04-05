@@ -29,7 +29,7 @@ class Send
         ];
         $_POST['http_server']->task($taskData);
 
-        return Util::show(config('code.error'),$e->getMessage());
+        return Util::show(config('code.success'),'ok');
 
 
 //        try{
