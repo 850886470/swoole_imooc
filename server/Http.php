@@ -13,7 +13,8 @@ class Http
         $this->http->set([
             'enable_static_handler' => true,
             'document_root' => "/var/www/html/swoole_imooc/public/static",
-            'worker_num'=>5
+            'worker_num'=>5,
+            'task_worker_num'=>4
         ]);
         $this->http->on('WorkerStart',[$this,'onWorkerStart']);
         $this->http->on('request',[$this,'onRequest']);
