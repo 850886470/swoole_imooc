@@ -8,7 +8,7 @@ class Http
 
     public function __construct()
     {
-        echo 123123;
+
         $this->http =  new swoole_http_server(self::HOST,self::PORT);
         $this->http->set([
             'enable_static_handler' => true,
@@ -82,7 +82,6 @@ class Http
     }
 
 
-
     public function onTask($server,$taskId,$workerId,$data) {
 
 //        $sms = new app\common\lib\ali\Sms;
@@ -93,7 +92,7 @@ class Http
 //        }
 
         //分发task任务
-        $obj = new app\common\lib\Task;
+        $obj = new app\common\lib\task\Task;
 
        if(isset($data['method'])) {
            $method = $data['method'];
