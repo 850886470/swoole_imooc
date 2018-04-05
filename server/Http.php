@@ -4,7 +4,7 @@ class Http
     const HOST = "0.0.0.0";
     const PORT = 8811;
 
-    public $ws = null;
+    public $http = null;
 
     public function __construct()
     {
@@ -101,7 +101,7 @@ class Http
            $method = $data['method'];
            $flag = $obj->$method[$data['data']];
 
-           return $flag;
+
        }
 
         return "On task finish\n"; //通知worker
