@@ -78,9 +78,7 @@ class Http
         $res = ob_get_contents();
         ob_end_clean();
 
-
-
-        $response->end($res.'123123123123');
+        $response->end($res);
     }
 
 
