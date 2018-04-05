@@ -72,7 +72,7 @@ class Http
                 ->run()
                 ->send();
         }catch (\Exception $e) {
-
+            echo $e->getMessage();
         }
 
         $res = ob_get_contents();
