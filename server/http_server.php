@@ -23,7 +23,7 @@ $http->on('WorkerStart', function(swoole_server $server,$worker_id) {
     require __DIR__ . '/../thinkphp/base.php';
 });
 
-$http->on('request', function($request, $response) {
+$http->on('request', function($request, $response) use ($http) {
 
     $_GET = [];
     $_POST = [];
@@ -69,6 +69,7 @@ $http->on('request', function($request, $response) {
     ob_clean();
 
     $response->end($res);
+    $http->close();
 
 });
 
