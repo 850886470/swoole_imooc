@@ -11,6 +11,8 @@ use Aliyun\Core\DefaultAcsClient;
 use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
 use Aliyun\Api\Sms\Request\V20170525\SendBatchSmsRequest;
 use Aliyun\Api\Sms\Request\V20170525\QuerySendDetailsRequest;
+use app\common\lib\Util;
+use think\Url;
 
 // 加载区域结点配置
 Config::load();
@@ -66,22 +68,7 @@ class Sms
         return static::$acsClient;
     }
 
-    private function request($url,$data = []) {
-        $ch = curl_init($url);
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
 
-        if ($data) {
-            curl_setopt($ch,CURLOPT_POST,1);
-            curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-        }
-
-        $res = curl_exec($ch);
-
-        curl_close($ch);
-
-        return $res;
-
-    }
 
     /**
      * 发送短信
@@ -92,7 +79,7 @@ class Sms
         $url = SMS_SEND_PATH . '?destno=' . $phone . '&smscont=' . $code;;
 
         if (strlen($phone) == 11 && $code) {
-            self::request($url);
+            return Util::request($url);
         }
 
         return;
@@ -133,22 +120,4 @@ class Sms
 
 }
 
-// 调用示例：
-set_time_limit(0);
-header('Content-Type: text/plain; charset=utf-8');
 
-$response = SmsDemo::sendSms();
-echo "发送短信(sendSms)接口返回的结果:\n";
-print_r($response);
-
-sleep(2);
-
-$response = SmsDemo::sendBatchSms();
-echo "批量发送短信(sendBatchSms)接口返回的结果:\n";
-print_r($response);
-
-sleep(2);
-
-$response = SmsDemo::querySendDetails();
-echo "查询短信发送情况(querySendDetails)接口返回的结果:\n";
-print_r($response);

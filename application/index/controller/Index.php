@@ -17,10 +17,12 @@ class Index
 
     public function sms()
     {
-        try{
-            Sms::sendSms('13357169619',1234);
-        } catch (\Exception $e) {
 
+        try{
+            $res = Sms::sendSms('13357169619',1234);
+            echo 'Success';
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
     }
 }
