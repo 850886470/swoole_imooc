@@ -8,7 +8,7 @@ class Http
 
     public function __construct()
     {
-
+        echo 123123;
         $this->http =  new swoole_http_server(self::HOST,self::PORT);
         $this->http->set([
             'enable_static_handler' => true,
@@ -18,7 +18,7 @@ class Http
         $this->http->on('WorkerStart',[$this,'onWorkerStart']);
         $this->http->on('request',[$this,'onRequest']);
         $this->http->on('task',[$this,'onTask']);
-        $this->http->on('task',[$this,'onTask']);
+
         $this->http->start();
     }
 
