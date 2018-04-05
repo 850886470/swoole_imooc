@@ -59,7 +59,7 @@ $http->on('request', function($request, $response) use ($http) {
         think\Container::get('app', [defined('APP_PATH') ? APP_PATH : ''])
             ->run()
             ->send();
-    }catch (Exception $e) {
+    }catch (\Exception $e) {
 
     }
 
