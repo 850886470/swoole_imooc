@@ -23,7 +23,12 @@ $http->on('WorkerStart', function(swoole_server $server,$worker_id) {
     require __DIR__ . '/../thinkphp/base.php';
 });
 
-$http->on('request', function($request, $response) use ($http) {
+$http->on('request', function($request, $response) {
+
+    $_GET = [];
+    $_POST = [];
+    $_SERVER = [];
+
     if(isset($request->server)) {
         foreach ($request->server as $k=>$v) {
             $_SERVER[strtoupper($k)] = $v;
@@ -64,7 +69,7 @@ $http->on('request', function($request, $response) use ($http) {
     ob_clean();
 
     $response->end($res);
-    $http->close();
+
 });
 
 $http->start();
