@@ -19,17 +19,33 @@ class Send
 
         $code = rand(1000,9999);
 
-        try{
-            $res = Sms::sendSms($mobile,$code);
-            echo 'Success';
-        } catch (\Exception $e) {
-            return Util::show(config('code.error'),$e->getMessage());
-        }
+        $taskData = [
+            'method'=>'sendSms',
+            'data'=>[
+                'phone'=>$mobile,
+                'code'=>$code,
+            ]
+
+        ];
+        $_POST['http_server']->task($taskData);
+
+        return Util::show(config('code.error'),$e->getMessage());
+
+
+//        try{
+//            $res = Sms::sendSms($mobile,$code);
+//            echo 'Success';
+//        } catch (\Exception $e) {
+//            return Util::show(config('code.error'),$e->getMessage());
+//        }
 
         if ($res == 'ReturnCode=1') {
-            $redis = new \Swoole\Coroutine\Redis();
-            $redis->connect(config('redis.host'),config('redis.port'));
-            $redis->set(Redis::smsKey($mobile),$code,config('redis.expire_time'));
+
+//            $redis = new \Swoole\Coroutine\Redis();
+//            $redis->connect(config('redis.host'),config('redis.port'));
+//            $redis->set(Redis::smsKey($mobile),$code,config('redis.expire_time'));
+//
+
         } else {
             return Util::show(config('code.error'),'验证码发送失败');
         }
