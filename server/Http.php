@@ -20,6 +20,7 @@ class Http
         $this->http->on('request',[$this,'onRequest']);
         $this->http->on('task',[$this,'onTask']);
         $this->http->on('finish',[$this,'onFinish']);
+        $this->http->on('close',[$this,'onClose']);
 
         $this->http->start();
     }
@@ -32,7 +33,7 @@ class Http
         define('APP_PATH', __DIR__ . '/../application/');
 
         //加载框架文件
-        require __DIR__ . '/../thinkphp/base.php';
+        require __DIR__ . '/../thinkphp/start.php';
     }
 
     public function onRequest($request,$response)
@@ -99,6 +100,8 @@ class Http
        if(isset($data['method'])) {
            $method = $data['method'];
            $flag = $obj->$method[$data['data']];
+
+           return $flag;
        }
 
         return "On task finish\n"; //通知worker
@@ -113,7 +116,7 @@ class Http
 
 
 
-    public function onClose($ws,$fd) {
+    public function onClose($serv,$fd) {
         echo "Client $fd closed\n";
     }
 }
