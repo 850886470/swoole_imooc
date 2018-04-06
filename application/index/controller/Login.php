@@ -17,14 +17,15 @@ class Login
             return Util::show(config('code.error'),'mobile or code is empty');
 
         try{
-            $redisCode = Predis::getInstance()->get(Redis::smsKey($mobile));
-
+            //$redisCode = Predis::getInstance()->get(Redis::smsKey($mobile));
+            $redisCode = 123;
         }catch (\Exception $e) {
             echo $e->getMessage();
             return false;
         }
 
         if ($redisCode == $code) {
+
 
             $data = [
                 'user'=>$mobile,

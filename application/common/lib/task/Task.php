@@ -13,7 +13,7 @@ use app\common\lib\Redis;
 
 class Task
 {
-    public function sendSms($data)
+    public function sendSms($data,$server)
     {
         try{
             $res = Sms::sendSms($data['mobile'],$data['code']);
@@ -34,5 +34,16 @@ class Task
         echo 'err2';
 
         return true;
+    }
+
+    public function pushLive($data,$server)
+    {
+        $clients = Predis::getInstance()->sMembers(config('redis.live_game_key'));
+
+        foreach ($clients as $fd)
+        {
+            $_POST['http_server']->push($fd,json_encode($data));
+        }
+
     }
 }

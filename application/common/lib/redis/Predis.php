@@ -32,8 +32,9 @@ class Predis
 
     public static function getInstance()
     {
-        if (self::$instance) {
-            self::$instance = new self();
+
+        if (!self::$instance) {
+             new self();
         }
         return self::$instance;
     }
@@ -58,5 +59,33 @@ class Predis
             return false;
 
         return $this->redis->get($key);
+    }
+
+    /** 操作有序集合
+     * @param $key
+     * @param $value
+     * @return mixed
+     */
+    public  function sAdd($key,$value)
+    {
+        return $this->redis->sAdd($key,$value);
+    }
+
+    public function sRem($key,$value)
+    {
+        return $this->redis->sRem($key,$value);
+    }
+
+    public function sMembers($key)
+    {
+        return $this->redis->sMembers($key);
+    }
+
+    public function __call($name, $arguments)
+    {
+        if (count($arguments) != 2)
+            return '';
+
+        return $this->redis->$name($arguments[0],$arguments[1]);
     }
 }

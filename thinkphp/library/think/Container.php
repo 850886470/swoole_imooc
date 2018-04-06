@@ -118,7 +118,7 @@ class Container
      * @param bool          $newInstance    是否每次创建新的实例
      * @return object
      */
-    public function make($abstract, $vars = [], $newInstance = false)
+    public function  make($abstract, $vars = [], $newInstance = false)
     {
         if (true === $vars) {
             // 总是创建新的实例化对象
