@@ -125,7 +125,7 @@ class Ws
 
     public function  onOpen($serv,$request) {
         app\common\lib\redis\Predis::getInstance()->sAdd(
-            config('redis.live_game_key',$request->fd)
+            config('redis.live_game_key'),$request->fd
         );
         print_r($request->fd);
 
@@ -134,7 +134,7 @@ class Ws
     public function onClose($serv,$fd) {
 
         app\common\lib\redis\Predis::getInstance()->sRem(
-            config('redis.live_game_key',$fd)
+            config('redis.live_game_key'),$fd
         );
 
         echo "Client $fd closed\n";

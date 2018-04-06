@@ -10,15 +10,15 @@ class Login
 {
     public function index()
     {
-        $mobile = intval($_GET['mobile']);
+        $mobile = intval($_GET['phone_num']);
         $code = intval($_GET['code']);
 
         if (!$mobile || !$code)
             return Util::show(config('code.error'),'mobile or code is empty');
 
         try{
-            //$redisCode = Predis::getInstance()->get(Redis::smsKey($mobile));
-            $redisCode = 123;
+            $redisCode = Predis::getInstance()->get(Redis::smsKey($mobile));
+
         }catch (\Exception $e) {
             echo $e->getMessage();
             return false;
