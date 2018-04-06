@@ -13,7 +13,7 @@ class Image
     public function index()
     {
         $files = request()->file('file');
-        $info = $files->move('../public/static/upload');
+        $info = $files->move('/var/www/html/swoole_imooc/public/static/upload');
 
         if ($info) {
             $data = [
