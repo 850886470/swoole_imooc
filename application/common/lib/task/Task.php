@@ -36,7 +36,7 @@ class Task
         return true;
     }
 
-    public function pushLive($data,$server)
+    public function livePush($data,$server)
     {
         $clients = Predis::getInstance()->sMembers(config('redis.live_game_key'));
 
