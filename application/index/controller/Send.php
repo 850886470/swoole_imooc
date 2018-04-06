@@ -22,7 +22,7 @@ class Send
         $taskData = [
             'method'=>'sendSms',
             'data'=>[
-                'phone'=>$mobile,
+                'phone_num'=>$mobile,
                 'code'=>$code,
             ]
 

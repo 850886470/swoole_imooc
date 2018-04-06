@@ -10,8 +10,8 @@ class Login
 {
     public function index()
     {
-        $mobile = intval($_GET['phone_num']);
-        $code = intval($_GET['code']);
+        $mobile =  isset($_GET['phone_num']) ? intval($_GET['phone_num']) : '';
+        $code = isset($_GET['code']) ? intval($_GET['code']): '';
 
         if (!$mobile || !$code)
             return Util::show(config('code.error'),'mobile or code is empty');
