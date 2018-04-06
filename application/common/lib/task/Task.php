@@ -42,7 +42,7 @@ class Task
 
         foreach ($clients as $fd)
         {
-            $_POST['http_server']->push($fd,json_encode($data));
+            $server->push($fd,json_encode($data));
         }
 
     }
