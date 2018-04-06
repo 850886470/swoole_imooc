@@ -27,11 +27,10 @@ class Task
             Predis::getInstance()->set(Redis::smsKey($data['mobile']),$data['code'],config('redis.expire_time'));
 
         } else {
-            echo 'err1';
+
             return false;
         }
 
-        echo 'err2';
 
         return true;
     }

@@ -28,6 +28,8 @@ class Predis
         if (!$res) {
             throw new \Exception('redis connect error.');
         }
+
+        self::$instance = $this->redis;
     }
 
     public static function getInstance()
