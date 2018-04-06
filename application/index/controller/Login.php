@@ -26,7 +26,6 @@ class Login
 
         if ($redisCode == $code) {
 
-
             $data = [
                 'user'=>$mobile,
                 'srcKey'=>md5(Redis::userKey($mobile)),

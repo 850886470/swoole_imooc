@@ -31,25 +31,6 @@ class Send
 
         return Util::show(config('code.success'),'ok');
 
-
-//        try{
-//            $res = Sms::sendSms($mobile,$code);
-//            echo 'Success';
-//        } catch (\Exception $e) {
-//            return Util::show(config('code.error'),$e->getMessage());
-//        }
-
-        if ($res == 'ReturnCode=1') {
-
-//            $redis = new \Swoole\Coroutine\Redis();
-//            $redis->connect(config('redis.host'),config('redis.port'));
-//            $redis->set(Redis::smsKey($mobile),$code,config('redis.expire_time'));
-//
-
-        } else {
-            return Util::show(config('code.error'),'验证码发送失败');
-        }
-
     }
 
     public function sms()

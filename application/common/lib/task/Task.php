@@ -16,15 +16,16 @@ class Task
     public function sendSms($data,$server)
     {
         try{
-            $res = Sms::sendSms($data['mobile'],$data['code']);
+            $res = Sms::sendSms($data['phone_num'],$data['code']);
         } catch (\Exception $e) {
             echo $e->getMessage();
-           return false;
+            return false;
         }
+
 
         if ($res == 'ReturnCode=1') {
 
-            Predis::getInstance()->set(Redis::smsKey($data['mobile']),$data['code'],config('redis.expire_time'));
+            Predis::getInstance()->set(Redis::smsKey($data['phone_num']),$data['code'],config('redis.expire_time'));
 
         } else {
 
