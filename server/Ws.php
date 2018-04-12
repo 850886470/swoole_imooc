@@ -3,6 +3,7 @@ class Ws
 {
     const HOST = "0.0.0.0";
     const PORT = 8811;
+    const CHART_PORT = 8812;
 
     public $ws = null;
 
@@ -10,6 +11,9 @@ class Ws
     {
 
         $this->ws =  new swoole_websocket_server(self::HOST,self::PORT);
+
+        $this->ws->listen(self::HOST,self::CHART_PORT,SWOOLE_SOCK_TCP);
+
         $this->ws->set([
             'enable_static_handler' => true,
             'document_root' => "/var/www/html/swoole_imooc/public/static",
