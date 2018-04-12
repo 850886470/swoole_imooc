@@ -21,7 +21,7 @@ class Chart
             'content'=>$_POST['content']
         ];
 
-        foreach ($_POST['ws_server']->port[1]->connections as $fd)
+        foreach ($_POST['ws_server']->ports[1]->connections as $fd)
         {
             $_POST['ws_server']->push($fd,json_encode($data));
         }
