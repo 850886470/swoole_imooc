@@ -1,6 +1,6 @@
 var ws = new WebSocket('ws://192.168.1.199:8811');
 ws.onopen = function (e) {
-    ws.send("Hello");
+
     console.log('connected');
 }
 

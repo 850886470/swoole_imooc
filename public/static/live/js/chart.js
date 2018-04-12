@@ -1,4 +1,4 @@
-var ws = new WebSocket('ws://192.168.1.199:8812');
+var ws = new WebSocket('ws://singwa.swoole.com:8812');
 ws.onopen = function (e) {
 
     console.log('connected');
